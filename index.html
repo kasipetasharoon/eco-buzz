@@ -506,6 +506,14 @@
                 }
             });
         }
+        // Add this inside the status check in index.html
+else if (status === 'PAUSED') {
+    setBtn('yellow', 'PAUSED', 'WAIT FOR RESUME', true);
+    setStatus('GAME IS TEMPORARILY PAUSED', '#fbbf24');
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+    // Display the remaining time from the server
+    setTimer(state.remainingTime || 0, TOTAL_TIME);
+}
         else if (status === 'CLOSED') {
             setBtn('black', 'LOCKED', '', true);
             setStatus('ROUND CLOSED', '#4b5563');
