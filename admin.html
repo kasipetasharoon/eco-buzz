@@ -19,10 +19,7 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         @keyframes pulse-once { 0% { background: #16a34a; } 100% { background: #111827; } }
         .new-buzz { animation: pulse-once 1s ease-out; }
-        #adminTimer {
-    transition: color 0.5s ease, opacity 0.5s ease;
-    text-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
+        #adminTimer { transition: color 0.5s ease, opacity 0.5s ease; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body class="overflow-hidden">
@@ -42,7 +39,7 @@
         <div class="sidebar w-72 p-6 flex flex-col">
             <div class="mb-10 text-center">
                 <div class="text-3xl mb-1">🌿</div>
-                <h1 class="text-xl font-black tracking-tighter text-green-400">ECO BUZZ <span class="text-gray-500 text-xs">MASTER</span></h1>
+                <h1 class="text-xl font-black tracking-tighter text-green-400">ECO BUZZ <span class="text-gray-500 text-xs text-white">MASTER</span></h1>
             </div>
 
             <nav class="space-y-2 flex-1">
@@ -79,10 +76,11 @@
                     <div id="adminTimer" class="text-7xl font-mono font-black text-green-500 opacity-20">100s</div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-4">
-                    <button onclick="startQuestion()" class="btn-green h-24 rounded-2xl font-black text-xl shadow-xl shadow-green-900/20 uppercase">Start Question</button>
-                    <button onclick="stopQuestion()" class="bg-orange-600 hover:bg-orange-700 h-24 rounded-2xl font-black text-xl shadow-xl uppercase">Stop Buzzer</button>
-                    <button onclick="resetQuestion()" class="bg-gray-700 hover:bg-gray-600 h-24 rounded-2xl font-black text-xl shadow-xl uppercase">Reset Queue</button>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <button id="startBtn" onclick="startQuestion()" class="btn-green h-24 rounded-2xl font-black text-lg shadow-xl uppercase">Start Q</button>
+                    <button id="pauseBtn" onclick="togglePause()" class="bg-amber-600 hover:bg-amber-700 h-24 rounded-2xl font-black text-lg shadow-xl uppercase disabled:opacity-30" disabled>Pause</button>
+                    <button onclick="stopQuestion()" class="bg-red-600 hover:bg-red-700 h-24 rounded-2xl font-black text-lg shadow-xl uppercase">Stop</button>
+                    <button onclick="resetQuestion()" class="bg-gray-700 hover:bg-gray-600 h-24 rounded-2xl font-black text-lg shadow-xl uppercase">Reset</button>
                 </div>
 
                 <div class="mt-10">
@@ -90,7 +88,7 @@
                         <span class="w-8 h-px bg-gray-800 mr-3"></span> Active Buzz Queue (Top 10)
                     </h3>
                     <div id="buzzList" class="space-y-3">
-                        <div class="text-gray-600 italic">No active buzzes yet...</div>
+                        <div class="text-gray-600 italic text-sm">Waiting for buzzes...</div>
                     </div>
                 </div>
             </div>
@@ -98,8 +96,8 @@
             <!-- LOGS -->
             <div id="tab-logs" class="hidden">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-black">BUZZ HISTORY</h2>
-                    <button onclick="clearLogs()" class="text-xs text-red-400 hover:underline">Clear Local History</button>
+                    <h2 class="text-3xl font-black uppercase">Buzz History</h2>
+                    <button onclick="clearLogs()" class="text-xs text-red-400 hover:underline">Clear Logs</button>
                 </div>
                 <div class="card overflow-hidden">
                     <table class="w-full text-left">
@@ -118,7 +116,7 @@
 
             <!-- TEAM MANAGER -->
             <div id="tab-teams" class="hidden">
-                <h2 class="text-3xl font-black mb-6">TEAM MANAGER</h2>
+                <h2 class="text-3xl font-black mb-6 uppercase">Team Manager</h2>
                 <div id="teamGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
             </div>
 
